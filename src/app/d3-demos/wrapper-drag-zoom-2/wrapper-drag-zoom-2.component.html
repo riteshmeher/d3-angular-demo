@@ -1,0 +1,104 @@
+<mat-card>
+  <mat-card-header>
+    <div class="mat-headline extra-primary-darker">Drag & Zoom II</div>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutAlign="start center">
+      <div fxFlex>
+        <p class="mat-body-1 extra-secondary-text">
+          Demonstrate how to:
+        </p>
+        <ul class="mat-body-1 extra-secondary-text">
+          <li>
+            build an Angular component which uses a D3 service to render to
+            <code class="extra-code">&lt;svg&gt;</code>,
+          </li>
+          <li>
+            use D3 version 4 in TypeScript to handle drag and zoom/pan events, and
+          </li>
+          <li>
+            use Angular to respond to input changes to a reusable D3 component.
+          </li>
+        </ul>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around start">
+          <div fxFlex="45%" [fxFlex.lt-md]="'90%'">
+            <h4 class="mat-title extra-primary-default">Reference</h4>
+            <p class="text-justify">
+              This example is based on
+              <b>Mike Bostock's Drag & Zoom II Block</b>. The original source with its supporting explanation can be found by
+              following the link below.
+            </p>
+            <em class="extra-secondary-text">Source:</em>
+            <mat-nav-list>
+              <a mat-list-item href="https://bl.ocks.org/mbostock/3127661b6f13f9316be745e77fdfb084">Drag & Zoom II Block</a>
+            </mat-nav-list>
+          </div>
+          <div fxFlex="45%" [fxFlex.lt-md]="'90%'">
+            <h4 class="mat-title extra-primary-default">D3 Angular Implementation</h4>
+            <p class="text-justify">
+              The implementation is a straightforward Angular component without any inputs. Its template is an
+              <code class="extra-code">&lt;svg&gt;</code> element with fixed dimensions. The component renders the visualization using the
+              <code class="extra-code">d3</code> instance provided by the injected
+              <code class="extra-code">D3Service</code>.
+            </p>
+            <p class="text-justify">
+              The D3 component can be embedded into a parent component using the following tag:
+            </p>
+            <p>
+              <code class="extra-code">
+                &lt;app-brush-zoom-2 [width]="width" [height]="height" [phylloRadius]="phylloRadius" [pointRadius]="pointRadius"&gt;&lt;/app-brush-zoom-2&gt;
+              </code>.
+            </p>
+            <em class="extra-secondary-text">The source code for the D3 component can be found at:</em>
+            <mat-nav-list>
+              <a mat-list-item href="https://github.com/tomwanzek/d3-ng2-demo/tree/master/src/app/d3-demos/brush-zoom-2">Brush Zoom II D3 Component</a>
+            </mat-nav-list>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around start">
+      <div fxFlex="45%" [fxFlex.lt-md]="'90%'">
+        <table class="settings-table">
+          <thead>
+            <tr>
+              <th colspan="4" class="text-center">
+                <span class="mat-caption extra-hint-text">
+                  <em>Choose Layout:</em>
+                </span>
+                <mat-button-toggle-group [(value)]="selectedLayoutName">
+                    <mat-button-toggle color="primary" *ngFor="let layout of dragZoom2Layouts" (click)="onActiveButtonChange(layout)" [class.active]="layout === selectedLayout"
+                    [ngClass]="'layout-' + layout.name" [value]="layout.name">
+                    {{layout.name}}
+                </mat-button-toggle>
+                </mat-button-toggle-group>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="extra-inverted-accent-lighter-bg">Width</th>
+              <td>{{selectedLayout.width}}</td>
+              <th class="extra-inverted-accent-lighter-bg">Height</th>
+              <td>{{selectedLayout.height}}</td>
+            </tr>
+            <tr>
+              <th class="extra-inverted-accent-lighter-bg">Radius (Phyllotaxis)</th>
+              <td>{{selectedLayout.phylloRadius}}</td>
+              <th class="extra-inverted-accent-lighter-bg">Radius (Point)</th>
+              <td>{{selectedLayout.pointRadius}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div fxFlex="45%" [fxFlex.lt-md]="'90%'">
+        <div class="visualization">
+          <app-drag-zoom-2 [width]="selectedLayout.width" [height]="selectedLayout.height" [phylloRadius]="selectedLayout.phylloRadius"
+            [pointRadius]="selectedLayout.pointRadius"></app-drag-zoom-2>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

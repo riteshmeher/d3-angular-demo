@@ -1,0 +1,15 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.splash-image {
+  max-height: 400px;
+}
+
+.text-justify p {
+  text-align: justify;
+}
+
+.text-center p {
+  text-align: center;
+}
